@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Countdown Timer</title>
+  <link rel="stylesheet" href="style-timer.css">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- In your HTML <head> -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Style.css">
+</head>
+<body class="timer-page">
+  <div class="timer-container">
+    <h1>Countdown Timer</h1>
+
+    <div class="input-group">
+      <input type="number" id="minutes" placeholder="Minutes" min="0">
+      <input type="number" id="seconds" placeholder="Seconds" min="0" max="59">
+    </div>
+
+    <div class="countdown-display" id="display">00:00</div>
+
+    <div class="buttons">
+      <button onclick="startTimer()">Start</button>
+      <button onclick="resetTimer()">Reset</button>
+    </div>
+  </div>
+
+  <script>
+    let timer;
+    let totalTime = 0;
+
+    function startTimer() {
+      const mins = parseInt(document.getElementById('minutes').value) || 0;
+      const secs = parseInt(document.getElementById('seconds').value) || 0;
+      totalTime = mins * 60 + secs;
+
+      if (totalTime <= 0) return;
+
+      clearInterval(timer);
+      updateDisplay();
+
+      timer = setInterval(() => {
+        totalTime--;
+        if (totalTime <= 0) {
+          clearInterval(timer);
+        }
+        updateDisplay();
+      }, 1000);
+    }
+
+    function updateDisplay() {
+      const mins = String(Math.floor(totalTime / 60)).padStart(2, '0');
+      const secs = String(totalTime % 60).padStart(2, '0');
+      document.getElementById('display').textContent = `${mins}:${secs}`;
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      totalTime = 0;
+      document.getElementById('display').textContent = "00:00";
+    }
+  </script>
+</body>
+</html>

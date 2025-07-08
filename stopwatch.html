@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stopwatch</title>
+  <link rel="stylesheet" href="style-stopwatch.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- In your HTML <head> -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Style.css">
+</head>
+<body class="stopwatch-page">
+  <div class="stopwatch-container">
+    <h1>Stopwatch</h1>
+    <div class="display" id="display">00:00:00</div>
+    <div class="controls">
+      <button id="start">Start</button>
+      <button id="stop">Stop</button>
+      <button id="reset">Reset</button>
+    </div>
+  </div>
+
+  <script>
+    // Basic Stopwatch Functionality
+    let startTime, interval;
+    const display = document.getElementById("display");
+
+    function updateDisplay() {
+      const elapsed = Date.now() - startTime;
+      const seconds = Math.floor((elapsed / 1000) % 60).toString().padStart(2, "0");
+      const minutes = Math.floor((elapsed / (1000 * 60)) % 60).toString().padStart(2, "0");
+      const hours = Math.floor(elapsed / (1000 * 60 * 60)).toString().padStart(2, "0");
+      display.textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    document.getElementById("start").onclick = () => {
+      if (!interval) {
+        startTime = Date.now() - (interval ? Date.now() - startTime : 0);
+        interval = setInterval(updateDisplay, 1000);
+      }
+    };
+
+    document.getElementById("stop").onclick = () => {
+      clearInterval(interval);
+      interval = null;
+    };
+
+    document.getElementById("reset").onclick = () => {
+      clearInterval(interval);
+      interval = null;
+      display.textContent = "00:00:00";
+    };
+  </script>
+</body>
+</html> 

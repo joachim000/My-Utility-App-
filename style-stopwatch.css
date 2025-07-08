@@ -1,0 +1,57 @@
+/* Reset and base setup */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body.stopwatch-page {
+  background: radial-gradient(circle at center, #0f0f0f, #000000);
+  color: #0ff;
+  font-family: 'Orbitron', sans-serif;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stopwatch-container {
+  text-align: center;
+  padding: 2rem;
+  border: 2px solid #0ff;
+  border-radius: 20px;
+  box-shadow: 0 0 20px #0ff;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 300px;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #0ff;
+  margin-bottom: 1.5rem;
+}
+
+.display {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  color: #0ff;
+  text-shadow: 0 0 10px #0ff;
+}
+
+.controls button {
+  padding: 0.75rem 1.25rem;
+  margin: 0.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background: #111;
+  border: 2px solid #0ff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.controls button:hover {
+  background: #0ff;
+  color: #000;
+  transform: scale(1.05);
+}

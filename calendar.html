@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calendar</title>
+  <link rel="stylesheet" href="style-calendar.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- In your HTML <head> -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Style.css">
+  
+</head>
+<body class="calendar-page">
+  <div class="calendar-container">
+    <h1>My Calendar</h1>
+    <div id="calendar"></div>
+  </div>
+
+  <script>
+    const calendar = document.getElementById('calendar');
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth();
+
+    const monthNames = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const firstDay = new Date(year, month, 1).getDay();
+
+    const calendarGrid = document.createElement('div');
+    calendarGrid.classList.add('grid');
+
+    for (let i = 0; i < firstDay; i++) {
+      const blank = document.createElement('div');
+      blank.className = 'blank';
+      calendarGrid.appendChild(blank);
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const date = document.createElement('div');
+      date.className = 'date';
+      date.textContent = day;
+      if (day === today.getDate()) {
+        date.classList.add('today');
+      }
+      calendarGrid.appendChild(date);
+    }
+
+    const title = document.createElement('h2');
+    title.textContent = `${monthNames[month]} ${year}`;
+    calendar.prepend(title);
+    calendar.appendChild(calendarGrid);
+  </script>
+</body>
+</html>

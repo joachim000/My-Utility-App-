@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Digital Clock</title>
+<!-- In your HTML <head> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- In your HTML <head> -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- In clock.html -->
+<link rel="stylesheet" href="style-clock.css">
+    
+<link rel="stylesheet" href="Style.css">
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const time = now.toLocaleTimeString();
+            document.getElementById("clock").textContent = time;
+        }
+
+        setInterval(updateClock, 1000);
+        window.onload = updateClock;
+    </script>
+</head>
+<body class="clock-page">
+    <h1>Digital Clock</h1>
+    <h2 id="clock">Loading...</h2>
+    <a href="index.html">Back to Home</a>
+</body>
+</html>
